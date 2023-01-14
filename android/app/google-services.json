@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "817761250707",
+    "project_id": "orderje-iium",
+    "storage_bucket": "orderje-iium.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817761250707:android:97bc920bd53e4ceae7cc66",
+        "android_client_info": {
+          "package_name": "com.example.orderje"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817761250707-v5sgbrc5dt3bt0gf2l0jehbnal30e7ou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfu1vBNvHSkvIqc3l3zy4OmlJepMzFmWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817761250707-v5sgbrc5dt3bt0gf2l0jehbnal30e7ou.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817761250707-tiipiomc1nvjalquek1vvctjm9g4h79d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.orderje"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
