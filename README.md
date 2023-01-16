@@ -1,6 +1,6 @@
-# orderje
+# OrderJe App
 
-A new Flutter project.
+OrderJe is a food ordering system built to ease the food ordering process in IIUM's cafe.
 
 ## Getting Started
 
