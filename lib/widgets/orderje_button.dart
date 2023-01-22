@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/constants/orderje_theme.dart';
-import 'package:orderje/services/orderje_gesturerecognizer.dart';
 
 class OrderJeButton extends StatefulWidget {
   OrderJeButton(
