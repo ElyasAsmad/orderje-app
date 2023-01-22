@@ -3,7 +3,12 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:orderje/constants/brand_color.dart';
+import 'package:orderje/constants/color_schemes.g.dart';
 import 'package:orderje/firebase_options.dart';
+import 'package:orderje/screens/auth/login_screen.dart';
+import 'package:orderje/screens/auth/signup_screen.dart';
+import 'package:orderje/screens/getstarted_screen.dart';
 import 'package:orderje/screens/main_screen.dart';
 
 void main() async {
@@ -23,13 +28,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'OrderJe',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          colorScheme: lightColorScheme,
           useMaterial3: true,
           fontFamily: 'GeneralSans',
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0)
+            )
+          )
         ),
-        home: const MainScreen());
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const GetStartedScreen(),
+          '/auth/login': (context) => const LoginScreen(),
+          '/auth/register': (context) => const SignupScreen(),
+          '/home': (context) => const MainScreen()
+        },
+        // home: const GetStartedScreen()
+    );
   }
 }
 
