@@ -25,9 +25,34 @@ class _LoginScreenState extends State<LoginScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            const Text(
-              'OrderJe',
-              style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: IconButton(
+                        onPressed: () {
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          }
+                        },
+                        icon: Icon(
+                          CupertinoIcons.arrow_left,
+                          color: OrderJeColors.black,
+                        )),
+                  ),
+                  const Expanded(
+                    child: Text(
+                      'OrderJe',
+                      style: TextStyle(
+                          fontSize: 40.0, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 15.0,
