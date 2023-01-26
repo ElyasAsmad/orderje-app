@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/screens/nav_screens/home_screen.dart';
 import 'package:orderje/screens/nav_screens/order_screen.dart';
 import 'package:orderje/screens/nav_screens/profile_screen.dart';
@@ -29,16 +31,18 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
         elevation: 0,
+        enableFeedback: true,
+        backgroundColor: OrderJeColors.mainColor,
         currentIndex: currentIndex,
-        selectedItemColor: Colors.black54,
+        selectedItemColor: OrderJeColors.black,
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: 'Order'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+              icon: Icon(CupertinoIcons.bag), label: 'Order'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.person), label: 'Profile'),
         ],
       ),
     );
