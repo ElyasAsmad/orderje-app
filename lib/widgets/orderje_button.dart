@@ -35,7 +35,7 @@ class _OrderJeButtonState extends State<OrderJeButton> {
             left: -offset,
             duration: OrderJeTheme.buttonDuration,
             curve: Curves.bounceInOut,
-            child: InkWell(
+            child: GestureDetector(
               onTap: widget.onPressed,
               onTapDown: (_) => setState(() {
                 pressed = true;
