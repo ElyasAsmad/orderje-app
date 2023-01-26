@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -12,84 +14,67 @@ import 'package:orderje/screens/getstarted_screen.dart';
 import 'package:orderje/screens/main_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MyApp());
 
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'OrderJe',
-        theme: ThemeData(
-          colorScheme: lightColorScheme,
-          useMaterial3: true,
-          fontFamily: 'GeneralSans',
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ButtonStyle(
-              elevation: MaterialStateProperty.all(0)
-            )
-          )
-        ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const GetStartedScreen(),
-          '/auth/login': (context) => const LoginScreen(),
-          '/auth/register': (context) => const SignupScreen(),
-          '/home': (context) => const MainScreen()
-        },
-        // home: const GetStartedScreen()
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class _MyAppState extends State<MyApp> {
+  late StreamSubscription<User?> _sub;
+  final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  void initState() {
+    super.initState();
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+    _sub = FirebaseAuth.instance.userChanges().listen((user) {
+      _navigatorKey.currentState!.pushReplacementNamed(
+        user != null ? '/home' : '/',
+      );
     });
   }
 
   @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return MaterialApp(
+      navigatorKey: _navigatorKey,
+      debugShowCheckedModeBanner: false,
+      title: 'OrderJe',
+      theme: ThemeData(
+        colorScheme: lightColorScheme,
+        useMaterial3: true,
+        fontFamily: 'GeneralSans',
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(elevation: MaterialStateProperty.all(0))
+        )
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(fontFamily: 'GeneralSans'),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const GetStartedScreen(),
+        '/auth/login': (context) => const LoginScreen(),
+        '/auth/register': (context) => const SignupScreen(),
+        '/home': (context) => const MainScreen()
+      },
+      // home: const GetStartedScreen()
     );
   }
 }
