@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/widgets/orderje_iconbutton.dart';
 import 'package:orderje/widgets/orderje_textfield.dart';
