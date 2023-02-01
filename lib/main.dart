@@ -5,13 +5,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:orderje/constants/brand_color.dart';
+import 'package:get/get.dart';
 import 'package:orderje/constants/color_schemes.g.dart';
 import 'package:orderje/firebase_options.dart';
 import 'package:orderje/screens/auth/login_screen.dart';
 import 'package:orderje/screens/auth/signup_screen.dart';
 import 'package:orderje/screens/getstarted_screen.dart';
 import 'package:orderje/screens/main_screen.dart';
+import 'package:orderje/screens/order_screens/order_food_screen.dart';
+import 'package:orderje/screens/order_screens/payment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +57,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'OrderJe',
@@ -72,7 +74,9 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const GetStartedScreen(),
         '/auth/login': (context) => const LoginScreen(),
         '/auth/register': (context) => const SignupScreen(),
-        '/home': (context) => const MainScreen()
+        '/home': (context) => const MainScreen(),
+        '/order': (context) => OrderFoodScreen(),
+        '/payment': (context) => const PaymentScreen()
       },
       // home: const GetStartedScreen()
     );
