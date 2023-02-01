@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:orderje/constants/brand_color.dart';
-import 'package:orderje/screens/auth/login_screen.dart';
-import 'package:orderje/screens/auth/signup_screen.dart';
-import 'package:orderje/widgets/orderje_button.dart';
-import 'package:orderje/widgets/orderje_iconbutton.dart';
+import 'package:orderje/widgets/core/orderje_button.dart';
+import 'package:orderje/widgets/core/orderje_iconbutton.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -16,7 +15,8 @@ class GetStartedScreen extends StatelessWidget {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -72,7 +72,8 @@ class GetStartedScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     'Let\'s Get Started!',
-                    style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -81,7 +82,7 @@ class GetStartedScreen extends StatelessWidget {
                 ),
                 OrderJeButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/auth/register');
+                    Get.toNamed('/auth/register');
                   },
                   buttonText: 'Create an account',
                   buttonColor: const Color(0xFFABE5BC),
@@ -91,13 +92,21 @@ class GetStartedScreen extends StatelessWidget {
                 ),
                 OrderJeButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/auth/login');
+                    Get.toNamed('/auth/login');
                   },
                   buttonText: 'Log in to your account',
                 ),
-                const SizedBox(height: 20,),
-                const Text('or continue with', style: TextStyle(fontSize: 12),textAlign: TextAlign.center,),
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'or continue with',
+                  style: TextStyle(fontSize: 12),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -105,7 +114,9 @@ class GetStartedScreen extends StatelessWidget {
                       icon: FontAwesomeIcons.google,
                       onPressed: signInWithGoogle,
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     CircleButton(
                       icon: FontAwesomeIcons.microsoft,
                     ),

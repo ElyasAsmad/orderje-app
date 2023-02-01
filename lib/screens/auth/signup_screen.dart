@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:orderje/constants/brand_color.dart';
-import 'package:orderje/widgets/orderje_button.dart';
-import 'package:orderje/widgets/orderje_textfield.dart';
+import 'package:orderje/widgets/core/orderje_button.dart';
+import 'package:orderje/widgets/core/orderje_textfield.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);

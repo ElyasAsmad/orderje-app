@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/data/mock_promotion_data.dart';
-import 'package:orderje/widgets/food_card/food_promotion_card.dart';
+import 'package:orderje/widgets/food_promotion_card/food_promotion_card.dart';
 import 'package:orderje/widgets/orderje_foodcard.dart';
-import 'package:orderje/widgets/orderje_iconbutton.dart';
+import 'package:orderje/widgets/core/orderje_iconbutton.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,7 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const Text(
                     'OrderJe',
-                    style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
                   ),
                   CircleButton(
                     icon: CupertinoIcons.cart,
@@ -89,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontWeight: FontWeight.w500),
                                       ),
                                     ),
-                                    
                                     const SizedBox(
                                       height: 20.0,
                                     ),
@@ -141,15 +141,3 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 }
-
-// ListView(
-//   shrinkWrap: true,
-//   clipBehavior: Clip.none,
-//   scrollDirection: Axis.horizontal,
-//   children: const [
-//     FoodPromotionCard(),
-//     FoodPromotionCard(),
-//     FoodPromotionCard(),
-//     FoodPromotionCard()
-//   ],
-// ),
