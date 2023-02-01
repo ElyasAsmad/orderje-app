@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/constants/orderje_theme.dart';
-import 'package:orderje/widgets/food_card/order_status.dart';
+import 'package:orderje/widgets/food_promotion_card/order_status.dart';
 
 class FoodCard extends StatefulWidget {
   const FoodCard({super.key});

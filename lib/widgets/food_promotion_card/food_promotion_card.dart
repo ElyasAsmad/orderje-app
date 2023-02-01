@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/data/mock_promotion_data.dart';
+import 'package:orderje/widgets/core/orderje_image.dart';
 
 class FoodPromotionCard extends StatelessWidget {
   const FoodPromotionCard({super.key, required this.promotionData});
@@ -35,9 +34,9 @@ class FoodPromotionCard extends StatelessWidget {
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
                 ),
-                child: Image.network(
+                child: OrderJeImage(
                   promotionData.url,
-                  height: double.infinity,
+                  height: 169,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
