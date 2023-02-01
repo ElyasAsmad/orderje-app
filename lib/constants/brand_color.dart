@@ -6,4 +6,5 @@ class OrderJeColors {
   static Color black = const Color(0xFF1E1E1E);
   static Color green = const Color(0xFFABE5BC);
   static Color purple = const Color(0xFFCFADE8);
+  static Color red = const Color(0xFFFFA89A);
 }
