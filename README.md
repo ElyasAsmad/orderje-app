@@ -1,16 +1,4 @@
-# OrderJe App
+# OrderJe
 
-OrderJe is a food ordering system built to ease the food ordering process in IIUM's cafe.
+OrderJe is a platform that streamlines the ordering process for students and vendors. Students can place orders through the app, which will then be queued and awaiting fulfillment by the vendor. Vendors are able to easily manage and track their orders, with a simple tap of the "Order Complete" button to notify their customer once the order is ready. This app helps to improve efficiency, accuracy, and communication between vendors and students.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
