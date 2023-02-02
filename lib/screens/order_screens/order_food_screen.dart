@@ -12,14 +12,22 @@ import 'package:orderje/widgets/orderje_cart_item.dart';
 import 'package:orderje/widgets/orderje_order_food_card.dart';
 import 'package:orderje/widgets/utils/child_size_notifier.dart';
 
-class OrderFoodScreen extends StatelessWidget {
-  OrderFoodScreen({super.key});
+class OrderFoodScreen extends StatefulWidget {
+  const OrderFoodScreen({super.key});
+
+  @override
+  State<OrderFoodScreen> createState() => _OrderFoodScreenState();
+}
+
+class _OrderFoodScreenState extends State<OrderFoodScreen> with TickerProviderStateMixin {
 
   final OrderFoodController c = Get.put(OrderFoodController());
 
   @override
   Widget build(BuildContext context) {
+
     final args = ModalRoute.of(context)!.settings.arguments as MahallahCafe;
+    final TabController tabBarController = TabController(length: 2, vsync: this);
 
     return Scaffold(
       backgroundColor: OrderJeColors.green,
@@ -70,45 +78,34 @@ class OrderFoodScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 45,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      child: OrderJeButton(
-                                    buttonText: 'Foods',
-                                    onPressed: () {
-                                      controller.setIndex(0);
-                                    },
-                                    buttonColor: controller.tabIndex.value == 0
-                                        ? OrderJeColors.purple
-                                        : null,
-                                    hideShadow: true,
-                                    borderRadius: 30,
-                                    buttonTextStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                                  const SizedBox(
-                                    width: 10,
+                                height: 45,
+                                child: TabBar(
+                                  enableFeedback: true,
+                                  labelColor: OrderJeColors.black,
+                                  dividerColor: Colors.transparent,
+                                  indicator: BoxDecoration(
+                                    color: OrderJeColors.purple,
+                                    borderRadius: BorderRadius.circular(30),
+                                    border: Border.all(color: OrderJeColors.black)
                                   ),
-                                  Expanded(
-                                      child: OrderJeButton(
-                                    buttonText: 'Drinks',
-                                    onPressed: () {
-                                      controller.setIndex(1);
-                                    },
-                                    buttonColor: controller.tabIndex.value == 1
-                                        ? OrderJeColors.purple
-                                        : null,
-                                    hideShadow: true,
-                                    borderRadius: 30,
-                                    buttonTextStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                                ],
-                              ),
-                            ),
+                                  controller: tabBarController,
+                                  tabs: [
+                                    Tab(
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: double.maxFinite,
+                                        child: const Text('Foods'),
+                                      ),
+                                    ),
+                                    Tab(
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: double.maxFinite,
+                                        child: const Text('Drinks'),
+                                      )
+                                    )
+                                  ],
+                                )),
                             const SizedBox(
                               height: 10,
                             ),
@@ -119,22 +116,43 @@ class OrderFoodScreen extends StatelessWidget {
                                 width: double.maxFinite,
                                 decoration: OrderJeStyles.generateDecoration(
                                     borderRadius: 30, circularBorder: true),
-                                child: ListView.separated(
-                                    physics:
-                                        const AlwaysScrollableScrollPhysics(
-                                            parent: BouncingScrollPhysics()),
-                                    clipBehavior: Clip.none,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) {
-                                      return OrderFoodCard(
-                                        foodData: CafeFoodData.foodData[index],
-                                      );
-                                    },
-                                    separatorBuilder: (context, index) =>
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                    itemCount: CafeFoodData.foodData.length),
+                                child: TabBarView(
+                                  controller: tabBarController,
+                                  children: [
+                                    ListView.separated(
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(
+                                              parent: BouncingScrollPhysics()),
+                                      clipBehavior: Clip.none,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return OrderFoodCard(
+                                          foodData: CafeFoodData.foodData[index],
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                      itemCount: CafeFoodData.foodData.length),
+                                      ListView.separated(
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(
+                                              parent: BouncingScrollPhysics()),
+                                      clipBehavior: Clip.none,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return OrderFoodCard(
+                                          foodData: CafeFoodData.drinkData[index],
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) =>
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                      itemCount: CafeFoodData.drinkData.length),
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
