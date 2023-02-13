@@ -14,11 +14,16 @@ import 'package:orderje/screens/getstarted_screen.dart';
 import 'package:orderje/screens/main_screen.dart';
 import 'package:orderje/screens/order_screens/order_food_screen.dart';
 import 'package:orderje/screens/order_screens/payment_screen.dart';
+import 'package:orderje/screens/order_screens/post_payment_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
 
   runApp(const MyApp());
 
@@ -75,8 +80,9 @@ class _MyAppState extends State<MyApp> {
         '/auth/login': (context) => const LoginScreen(),
         '/auth/register': (context) => const SignupScreen(),
         '/home': (context) => const MainScreen(),
-        '/order': (context) => OrderFoodScreen(),
-        '/payment': (context) => const PaymentScreen()
+        '/order': (context) => const OrderFoodScreen(),
+        '/payment': (context) => PaymentScreen(),
+        '/payment/result': (context) => const PostPaymentScreen(),
       },
       // home: const GetStartedScreen()
     );
