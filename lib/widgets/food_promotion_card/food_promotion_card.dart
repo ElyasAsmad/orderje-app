@@ -28,7 +28,8 @@ class FoodPromotionCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: OrderJeColors.black))),
+                  border:
+                      Border(bottom: BorderSide(color: OrderJeColors.black))),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
@@ -38,7 +39,9 @@ class FoodPromotionCard extends StatelessWidget {
                   promotionData.url,
                   height: 169,
                   width: double.infinity,
+                  imageWidth: 230,
                   fit: BoxFit.cover,
+
                 ),
               ),
             ),
@@ -56,30 +59,28 @@ class FoodPromotionCard extends StatelessWidget {
                         Text(
                           promotionData.foodName,
                           style: const TextStyle(
-                            fontSize: 16, 
-                            fontWeight: FontWeight.bold
-                          ),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.start,
                         ),
                         Text(
                           'RM${promotionData.foodPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
-                            fontSize: 12, 
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF505050)
-                          ),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF505050)),
                           textAlign: TextAlign.start,
                         )
                       ],
                     ),
                     Row(
                       children: [
-                        const Icon(CupertinoIcons.location_solid, size: 10,),
+                        const Icon(
+                          CupertinoIcons.location_solid,
+                          size: 10,
+                        ),
                         Text(
                           promotionData.location,
-                          style: const TextStyle(
-                            fontSize: 10
-                          ),
+                          style: const TextStyle(fontSize: 10),
                         )
                       ],
                     )

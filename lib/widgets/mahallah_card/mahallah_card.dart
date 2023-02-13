@@ -29,6 +29,7 @@ class MahallahCard extends StatelessWidget {
                 mahallahCafeData.imageUrl,
                 fit: BoxFit.cover,
                 height: 200,
+                imageWidth: 320,
               ),
             ),
           ),
