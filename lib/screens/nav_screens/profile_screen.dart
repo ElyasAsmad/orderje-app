@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/widgets/core/orderje_button.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -19,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              buttonColor: Colors.red,
+              buttonColor: OrderJeColors.red,
             )
           ],
         )

@@ -36,8 +36,9 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: currentIndex,
         selectedItemColor: OrderJeColors.black,
         unselectedItemColor: Colors.grey.withOpacity(0.5),
-        showSelectedLabels: false,
+        // showSelectedLabels: false,
         showUnselectedLabels: false,
+        selectedLabelStyle: const TextStyle(fontSize: 10),
         items: const [
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
           BottomNavigationBarItem(
