@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^5.4.3
   get: ^4.6.5
   skeleton_loader: ^2.0.0+4
+  flutter_keyboard_visibility: ^5.4.0
 
 dev_dependencies:
   flutter_test:

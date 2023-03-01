@@ -56,11 +56,13 @@ class PostPaymentScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Container(
-                              padding: const EdgeInsets.all(30),
+                              width: double.maxFinite,
+                              padding: const EdgeInsets.all(20),
                               decoration: OrderJeStyles.generateDecoration(
                                   circularBorder: true,
                                   backgroundColor: OrderJeColors.mainColor,
                                   borderRadius: 30),
+                              child: Text('Payment Successful', textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
                             ),
                           ),
                           const SizedBox(

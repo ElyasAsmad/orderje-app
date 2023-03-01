@@ -46,7 +46,7 @@ class GetStartedScreen extends StatelessWidget {
                         TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Food at the speed of a click.',
+                    'Food at the speed of a click',
                     style: TextStyle(
                       fontSize: 16.0,
                     ),
@@ -71,7 +71,7 @@ class GetStartedScreen extends StatelessWidget {
                 const SizedBox(
                   width: double.infinity,
                   child: Text(
-                    'Let\'s Get Started!',
+                    'Let\'s Get Started!!',
                     style:
                         TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.start,
