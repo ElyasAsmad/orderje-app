@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:orderje/constants/brand_color.dart';
 import 'package:orderje/data/mock_mahallah_data.dart';
 import 'package:orderje/widgets/core/orderje_styles.dart';
@@ -16,14 +18,27 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  
   late User? currentUser;
+  late StreamSubscription<bool> keyboardSubscription;
 
   @override
   void initState() {
     super.initState();
 
     currentUser = FirebaseAuth.instance.currentUser;
+
+    keyboardSubscription =
+        KeyboardVisibilityController().onChange.listen((isVisible) {
+      if (!isVisible) {
+        FocusScope.of(context).unfocus();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    keyboardSubscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -39,17 +54,33 @@ class _OrderScreenState extends State<OrderScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('Hi, ${currentUser?.displayName ?? "user"}', style: const TextStyle(fontSize: 16),),
-                  const Text('Order Now!', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),),
-                  const SizedBox(height: 10,),
+                  Text(
+                    'Hi, ${currentUser?.displayName ?? "user"}',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const Text(
+                    'Order Now!',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
-                      Expanded(child: OrderJeTextField(label: 'Search for any Mahallah', showLabel: false, color: OrderJeColors.mainColor, height: 50,)),
-                      const SizedBox(width: 10,),
+                      Expanded(
+                          child: OrderJeTextField(
+                        label: 'Search for any Mahallah',
+                        showLabel: false,
+                        color: OrderJeColors.mainColor,
+                        height: 50,
+                      )),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       CircleButton(
                         icon: CupertinoIcons.location,
-                        width: 60 ,
-                        height: 60 ,
+                        width: 60,
+                        height: 60,
                         radius: 15,
                       )
                     ],
@@ -57,33 +88,32 @@ class _OrderScreenState extends State<OrderScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             Expanded(
               child: Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: OrderJeStyles.generateDecoration(),
                 padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
-                  clipBehavior: Clip.none,
-                  physics: const AlwaysScrollableScrollPhysics(
-                            parent: BouncingScrollPhysics()),
-                  child: ListView.separated(
-                    physics:
-                        const BouncingScrollPhysics(),
-                    shrinkWrap: true,
                     clipBehavior: Clip.none,
-                    itemBuilder: (context, index) {
-                      return MahallahCard(
-                        mahallahCafeData: MahallahCafeData.mahallahCafeData[index],
-                      );
-                    },
-                    separatorBuilder:
-                        (context, index) =>
-                            const SizedBox(
+                    physics: const AlwaysScrollableScrollPhysics(
+                        parent: BouncingScrollPhysics()),
+                    child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        clipBehavior: Clip.none,
+                        itemBuilder: (context, index) {
+                          return MahallahCard(
+                            mahallahCafeData:
+                                MahallahCafeData.mahallahCafeData[index],
+                          );
+                        },
+                        separatorBuilder: (context, index) => const SizedBox(
                               height: 10,
                             ),
-                    itemCount: MahallahCafeData.mahallahCafeData.length)
-                ),
+                        itemCount: MahallahCafeData.mahallahCafeData.length)),
               ),
             )
           ],

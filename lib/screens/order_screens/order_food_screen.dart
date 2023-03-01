@@ -80,6 +80,8 @@ class _OrderFoodScreenState extends State<OrderFoodScreen> with TickerProviderSt
                             SizedBox(
                                 height: 45,
                                 child: TabBar(
+                                  physics: const AlwaysScrollableScrollPhysics(
+                                              parent: BouncingScrollPhysics()),
                                   enableFeedback: true,
                                   labelColor: OrderJeColors.black,
                                   dividerColor: Colors.transparent,
@@ -91,6 +93,7 @@ class _OrderFoodScreenState extends State<OrderFoodScreen> with TickerProviderSt
                                   controller: tabBarController,
                                   tabs: [
                                     Tab(
+                                      
                                       child: Container(
                                         alignment: Alignment.center,
                                         width: double.maxFinite,
